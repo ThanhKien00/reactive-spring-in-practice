@@ -11,17 +11,18 @@ at their own pace and mostly deal with communication, while reactive programs on
 programs are usually reactive_" - Gerad Berry.
 
 ## Reactive Streams
-The _Reactive Streams_ specification can be summed up by four interface definitions:
+The _Reactive Streams_ aims to provide a standard for asynchronous stream processing with nonblocking backpressure. Its specification can be summed up by four interface definitions:
 
-- **Publisher**: Provider of a potentially unbounded number of sequenced elements, publishing them according to the demand received from its Subscriber.
-The Publisher interface declares a single method, subscribe(), through which a Subscriber can subscribe to the Publisher.
+- **Publisher**: Provider of a potentially unbounded number of sequenced elements, publishing them according to the demand received from its Subscriber. The Publisher interface
+declares a single method, subscribe(), through which a Subscriber can subscribe to the Publisher.
 ```java
 public interface Publisher<T> {
     void subscribe(Subscriber<? super T> subscriber);
 }
 ```
 
-- **Subscriber**:
+- **Subscriber**: Once a Subscriber has subscribed, it can receive events from the Publisher. Those events are sent via methods on the Subscriber interface. The first event that
+Subscriber will receive is through a call to onSubscribe().
 ```java
 public interface Subscriber<T> {
     void onSubscribe(Subscription sub);
@@ -33,4 +34,9 @@ public interface Subscriber<T> {
 
 - **Subscription**:
 
-- **Processor**:
+- **Processor**: represents a processing state which is both a Subscriber and a Publisher and obeys the contracts of both.
+
+```java
+public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {}
+```
+**Notes:** _Backpressure_ 
