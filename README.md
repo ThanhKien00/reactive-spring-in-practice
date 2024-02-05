@@ -93,7 +93,7 @@ When there are no more events, the Publisher completes the Subscription successf
 it completes the Subscription exceptionally by calling the _Subscriber.onError(Throwable)_ method. After invocation of _Subscriber.onComplete()_ or _Subscriber.onError(Throwable)_ events, the
 current Subscription will not send any other events to the Subscriber.
 
-<div style="text-align:center">
+<div style="text-align: center;">
     <img src="./docs/images/reactive_streams_seq_diagram.png" alt="Reactive Streams Sequence Diagram" width="500">
 </div>
 
