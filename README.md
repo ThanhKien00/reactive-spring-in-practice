@@ -56,7 +56,7 @@ public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {}
 
 **Notes:** _Backpressure_  is a means by which consumers of data can avoid being overwhelmed by an overly fast data source, by establishing limits on how much they're willing to handle.
 
-<img src="./docs/images/reactive_streams_sequence.png" alt="Reactive Streams Sequence Diagram" width="700">
+<img src="./docs/images/reactive_streams_sequence.png" alt="Reactive Streams Sequence Diagram" width="500">
 
 ## References
 [Stephane Maldini & Simon Baslé, _Reactor 3 Reference Guide_](https://projectreactor.io/docs/core/release/reference/#intro-reactive)
