@@ -78,19 +78,23 @@ public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {}
 - Exchanging data and controlling events
 - Successfully or exceptionally terminating the connection.
 
-When a Subscriber wants to start receiving events from a Publisher, it calls the Publisher.subscribe(Subscriber) method. If the Publisher accepts the request, it creates a new Subscription
-instance and invokes the Subscriber.onSubscribe(Subscription) method. If the Publisher rejects the request or otherwise fails, it invokes the Subscriber.onError(Throwable) method. Once the
-Publisher and the Subscriber establish a connection with each other through the Subscription instance, the Subscriber can request events, and the Publisher can send them. When the Subscriber
-wants to receive events, it calls the Subscription.request(long) method. Typically, the first such call occurs in the Subscriber.onSubscribe(Subscription) method. The Publisher sends each
-requested item by invoking the Subscriber.onNext(T) method only in response to a previous request. A Publisher can send fewer events than requested if the reactive stream ends, but then must
-call either the Subscriber.onComplete() or Subscriber.onError(Throwable) methods. If the Subscriber wants to stop receiving events, it invokes the Subscription.cancel() method. After invoking 
-this method, the Subscriber can continue to receive events to meet the previously requested demand. A canceled Subscription does not receive Subscriber.onComplete() or Subscriber.onError
--(Throwable) events. When there are no more events, the Publisher completes the Subscription successfully by invoking the Subscriber.onComplete() method. When an unrecoverable exception occurs 
-in the Publisher, it completes the Subscription exceptionally by invoking the Subscriber.onError(Throwable) method. After invocation of Subscriber.onComplete() or Subscriber.onError(Throwable)
-events, the current Subscription will not send any other events to the Subscriber.
+When a Subscriber wants to start receiving events from a Publisher, it calls the _Publisher.subscribe(Subscriber)_ method. If the Publisher accepts the request, it creates a new Subscription
+instance and invokes the _Subscriber.onSubscribe(Subscription)_ method. If the Publisher rejects the request or otherwise fails, it invokes the _Subscriber.onError(Throwable)_ method.
+
+Once the Publisher and the Subscriber establish a connection with each other through the Subscription instance, the Subscriber can request events, and the Publisher can send them. When the 
+Subscriber wants to receive events, it calls the _Subscription#request(long)_ method with the number of items requested. Typically, the first such call occurs in the _Subscriber.onSubscribe(Subscription)_
+method. The Publisher sends each requested item by calling the _Subscriber.onNext(T)_ method only in response to a previous request. A Publisher can send fewer events than requested if the
+reactive stream ends, but then must call either the _Subscriber.onComplete()_ or _Subscriber.onError(Throwable)_ methods.
+
+If the Subscriber wants to stop receiving events, it calls the _Subscription.cancel()_ method. After calling this method, the Subscriber can continue to receive events to meet the previously 
+requested demand. A canceled Subscription does not receive _Subscriber.onComplete()_ or _Subscriber.onError(Throwable)_ events.
+
+When there are no more events, the Publisher completes the Subscription successfully by calling the _Subscriber.onCompleted()_ method. When an unrecoverable exception occurs in the Publisher,
+it completes the Subscription exceptionally by calling the _Subscriber.onError(Throwable)_ method. After invocation of _Subscriber.onComplete()_ or _Subscriber.onError(Throwable)_ events, the
+current Subscription will not send any other events to the Subscriber.
 
 <div style="text-align:center">
-    <img src="./docs/images/reactive_streams_sequence.png" alt="Reactive Streams Sequence Diagram" width="500">
+    <img src="./docs/images/reactive_streams_seq_diagram.png" alt="Reactive Streams Sequence Diagram" width="500">
 </div>
 
 ## Reactor Core Features
