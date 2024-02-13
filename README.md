@@ -6,7 +6,7 @@
   * [Table of Content](#table-of-content)
   * [Understanding Reactive Programming](#understanding-reactive-programming)
   * [Reactive Streams](#reactive-streams)
-  * [Reactor Core Features](#reactor-core-features)
+  * [Reactor Core](#reactor-core)
   * [References](#references)
 <!-- TOC -->
 
@@ -97,7 +97,12 @@ current Subscription will not send any other events to the Subscriber.
     <img src="./docs/images/reactive_streams_seq_diagram.png" alt="Reactive Streams Sequence Diagram" width="500">
 </div>
 
-## Reactor Core Features
+## Reactor Core
+
+
+- `Flux`
+
+- `Mono`
 
 ## References
 - [Stephane Maldini & Simon Baslé, _Reactor 3 Reference Guide_](https://projectreactor.io/docs/core/release/reference/#intro-reactive)

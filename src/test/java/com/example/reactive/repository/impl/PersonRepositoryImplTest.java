@@ -28,6 +28,38 @@ class PersonRepositoryImplTest {
     }
 
     @Test
-    void findAll() {
+    void getIdMapFunction() {
+        personRepository.getById(1)
+                .map(Person::getFirstname)
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    void testFluxBlockFirst() {
+        Person person = personRepository.findAll()
+                .blockFirst();
+        System.out.println(person);
+    }
+
+    @Test
+    void testFluxSubscribe() {
+        personRepository.findAll()
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    void testFluxToListMono() {
+        personRepository.findAll()
+                .collectList()
+                .subscribe(list -> list.forEach(System.out::println));
+    }
+
+    @Test
+    void testFindPersonById() {
+        final Integer id = 3;
+        personRepository.findAll()
+                .filter(person -> person.getId().equals(id))
+                .next()
+                .subscribe(System.out::println);
     }
 }
