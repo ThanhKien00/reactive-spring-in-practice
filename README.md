@@ -99,6 +99,14 @@ current Subscription will not send any other events to the Subscriber.
 
 ## Reactor Core
 
+**Notes**: _Diagramming reactive flows_
+
+Reactive flows are often illustrated with marble diagrams. Marble diagrams depict a timeline of data as it flows through a Flux/Mono at the top, an operation in the middle, and the timeline
+of the resulting FLux/Mono at the bottom.
+
+<div style="text-align: center;">
+    <img src="./docs/images/marble_diagram.png" alt="Reactive Streams Sequence Diagram" width="700">
+</div>
 
 - `Flux`
 
